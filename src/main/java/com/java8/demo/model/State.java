@@ -53,6 +53,6 @@ public enum State {
 	WY;
 	
 	public static State getRandom() {
-		return State.values()[(int) Math.random() * State.values().length];
+		return State.values()[(int) (Math.random() * State.values().length)];
 	}
 }
