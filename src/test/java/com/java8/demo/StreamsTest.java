@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -32,14 +33,7 @@ public class StreamsTest {
 	public void simpleStreamTest() {
 		Instant start = Instant.now();
 		
-		BigDecimal totalAmount = customers.stream()
-		.filter(customer -> State.VA.equals(customer.getLocation()))
-		.map(Customer::getTransactions)
-		.filter(Objects::nonNull)
-		.flatMap(transactions -> transactions.stream())
-		.filter(transaction -> Category.APPAREL.equals(transaction.getCategory()))
-		.map(Transaction::getAmount)
-		.reduce(BigDecimal.ZERO, (total, newAmount) -> total.add(newAmount)).setScale(2);
+		BigDecimal totalAmount = getResult(customers.stream());
 		
 		Instant finish = Instant.now();
 		
@@ -52,20 +46,23 @@ public class StreamsTest {
 	public void parallelStreamTest() {
 		Instant start = Instant.now();
 		
-		BigDecimal totalAmount = customers.parallelStream()
-		.filter(customer -> State.VA.equals(customer.getLocation()))
-		.map(Customer::getTransactions)
-		.filter(Objects::nonNull)
-		.flatMap(transactions -> transactions.stream())
-		.filter(transaction -> Category.APPAREL.equals(transaction.getCategory()))
-		.map(Transaction::getAmount)
-		.reduce(BigDecimal.ZERO, (total, newAmount) -> total.add(newAmount)).setScale(2);
+		BigDecimal totalAmount = getResult(customers.parallelStream());
 		
 		Instant finish = Instant.now();
 		
 		LOG.info("Parallel stream: " + Duration.between(start, finish));
 		
 		LOG.info("Total amount: " + totalAmount);
+	}
+	
+	private BigDecimal getResult(Stream<Customer> stream) {
+		return stream.filter(customer -> State.VA.equals(customer.getLocation()))
+		.map(Customer::getTransactions)
+		.filter(Objects::nonNull)
+		.flatMap(transactions -> transactions.stream())
+		.filter(transaction -> Category.APPAREL.equals(transaction.getCategory()))
+		.map(Transaction::getAmount)
+		.reduce(BigDecimal.ZERO, (total, newAmount) -> total.add(newAmount)).setScale(2);
 	}
 	
 }
