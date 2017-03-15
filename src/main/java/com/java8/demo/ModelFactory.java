@@ -18,7 +18,7 @@ public class ModelFactory {
 	private static final List<String> CUSTOMER_LAST_NAMES;
 	
 	static {
-		CUSTOMER_FIRST_NAMES = new ArrayList<>(Arrays.asList("Jim", "Elliot",
+		CUSTOMER_FIRST_NAMES = new ArrayList<>(Arrays.asList("Jim", "Elliott",
 				"David", "Alec", "Chester", "Bill", "John", "Shane", "Matt", "Josh", "Keith",
 				"Jessica", "Jamie", "Marshall", "Mike", "Sarah", "Beth", "Chelsea", "Doak", "Christina", "Molly", "Eddie", ""
 				, "Miguel", "Irshad", "Lisa", "Ray", "Vinay", "Perry", "Greg", "Suzanne", "Randy", "Alec", "Dale"));
@@ -29,7 +29,7 @@ public class ModelFactory {
 	
 	public static List<Customer> createCustomers() {
 		List<Customer> customers = new ArrayList<>();
-		int customerNum = (int) (Math.random() * 100 + 5000);
+		int customerNum = (int) (Math.random() * 100 + 1000);
 		
 		for (int x = 0; x < customerNum; x++) {
 			customers.add(createCustomer());
@@ -40,8 +40,8 @@ public class ModelFactory {
 	
 	private static Customer createCustomer() {
 		Customer customer = new Customer();
-		String name = CUSTOMER_FIRST_NAMES.get((int)Math.random() * CUSTOMER_FIRST_NAMES.size());
-		name += " " + CUSTOMER_LAST_NAMES.get((int)Math.random() * CUSTOMER_LAST_NAMES.size());
+		String name = CUSTOMER_FIRST_NAMES.get((int)(Math.random() * CUSTOMER_FIRST_NAMES.size()));
+		name += " " + CUSTOMER_LAST_NAMES.get((int)(Math.random() * CUSTOMER_LAST_NAMES.size()));
 		customer.setName(name);
 		customer.setLocation(State.getRandom());
 		customer.setBirthday(getRandomDate(LocalDate.of(1970, 1, 1), LocalDate.of(1995, 12, 31)));

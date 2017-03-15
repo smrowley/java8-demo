@@ -34,7 +34,6 @@ public class StreamsTest {
 		
 		BigDecimal totalAmount = customers.stream()
 		.filter(customer -> State.VA.equals(customer.getLocation()))
-		//.peek(System.out::println)
 		.map(Customer::getTransactions)
 		.filter(Objects::nonNull)
 		.flatMap(transactions -> transactions.stream())
@@ -55,7 +54,6 @@ public class StreamsTest {
 		
 		BigDecimal totalAmount = customers.parallelStream()
 		.filter(customer -> State.VA.equals(customer.getLocation()))
-		//.peek(System.out::println)
 		.map(Customer::getTransactions)
 		.filter(Objects::nonNull)
 		.flatMap(transactions -> transactions.stream())
