@@ -29,7 +29,7 @@ public class ModelFactory {
 	
 	public static List<Customer> createCustomers() {
 		List<Customer> customers = new ArrayList<>();
-		int customerNum = (int) (Math.random() * 100 + 1000);
+		int customerNum = (int) (Math.random() * 100 + 5000);
 		
 		for (int x = 0; x < customerNum; x++) {
 			customers.add(createCustomer());
