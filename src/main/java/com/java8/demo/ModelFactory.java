@@ -20,15 +20,16 @@ public class ModelFactory {
 	static {
 		CUSTOMER_FIRST_NAMES = new ArrayList<>(Arrays.asList("Jim", "Elliot",
 				"David", "Alec", "Chester", "Bill", "John", "Shane", "Matt", "Josh", "Keith",
-				"Jessica", "Jamie", "Marshall", "Mike", "Sarah", "Beth", "Chelsea", "Doak", "Christina", "Molly"));
+				"Jessica", "Jamie", "Marshall", "Mike", "Sarah", "Beth", "Chelsea", "Doak", "Christina", "Molly", "Eddie", ""
+				, "Miguel", "Irshad", "Lisa", "Ray", "Vinay", "Perry", "Greg", "Suzanne", "Randy", "Alec", "Dale"));
 		CUSTOMER_LAST_NAMES = new ArrayList<>(Arrays.asList("Smith", "Johnson",
 				"Wheatley", "Rowley", "Kyrus", "Sperlazza", "Fisher", "Robertson", "Richardson", "Taylor",
-				"Canter", "Herbert"));
+				"Canter", "Herbert", "Suarez", "Laczynski", "Miller", "Bogart", "Khan", "Gines", "Krishnan", "Minerovic", "Haibach"));
 	}
 	
 	public static List<Customer> createCustomers() {
 		List<Customer> customers = new ArrayList<>();
-		int customerNum = (int) (Math.random() * 100 + 50);
+		int customerNum = (int) (Math.random() * 100 + 5000);
 		
 		for (int x = 0; x < customerNum; x++) {
 			customers.add(createCustomer());
